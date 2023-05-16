@@ -14,13 +14,18 @@
 int main() {
     WSADATA wsaData;
     SOCKET clientSocket;
+    //server用アドレス(受信用)
     struct sockaddr_in serverAddr;
+    //client用アドレス(送信用)
+    struct sockaddr_in clietAddr;
+    //socket関係の結果を入れるよう
+    int result = 0;
     std::string sendMessage;
     try
     {
-
+        result = WSAStartup(MAKEWORD(2, 2), &wsaData);
         //winsock初期化
-        if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        if (result != 0) {
             throw "winsockの初期化に失敗";
         }
 
@@ -35,30 +40,51 @@ int main() {
         serverAddr.sin_family = AF_INET;
         serverAddr.sin_port = htons(SERVER_PORT);
         // 送信アドレスを設定
-        //serverAddr.sin_addr.S_un.S_addr = inet_addr(SERVER_IP);
         InetPton(serverAddr.sin_family, TEXT(SERVER_IP), &serverAddr.sin_addr.S_un.S_addr);
         
+        //clientの情報を設定
+        clietAddr.sin_family = AF_INET;
+        clietAddr.sin_port = 0;
+        InetPton(clietAddr.sin_family, TEXT(SERVER_IP), &clietAddr.sin_addr.S_un.S_addr);
+
+        result = bind(clientSocket, (sockaddr*)&clietAddr, sizeof(clietAddr));
+        if (result != 0) {
+            //std::cout << "bind error: " << WSAGetLastError() << std::endl;
+            throw "bind error: ";
+        }
+        
+
         //更新処理
         while (1) {
             printf("メッセージを入力してください (終了するには\"exit\"と入力): ");
             std::cin >> sendMessage;
 
             // メッセージの送信
-            int status = sendto(clientSocket, sendMessage.c_str(), sendMessage.size(), 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
-            if (status == SOCKET_ERROR) {
+            result = sendto(clientSocket, sendMessage.c_str(), sendMessage.size(), 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+            if (result == SOCKET_ERROR) {
                 std::cout << WSAGetLastError()<<std::endl;
             }
             // "exit"が入力されたら終了
             if (strcmp(sendMessage.c_str(), "exit") == 0)
                 break;
+
+            char recvMessage[BUFFER_SIZE];
+            int recvlen = sizeof(serverAddr);
+            result = recvfrom(clientSocket, recvMessage, BUFFER_SIZE, 0, (sockaddr*)&serverAddr, &recvlen);
+            if (result == INVALID_SOCKET) {
+                std::cout << "recvfrom error: " << WSAGetLastError() << std::endl;
+            }
+            std::cout <<"server: "<<recvMessage << std::endl;
         }
 
     }
     catch (const char* errmessage)
     {
+        //error method
         std::cout << errmessage << ": " << WSAGetLastError() << std::endl;
     }
 
+    //clean up method
     if (closesocket(clientSocket) == SOCKET_ERROR) {
         std::cout << "closesocket failed with error: "<< WSAGetLastError() << std::endl;
         WSACleanup();
