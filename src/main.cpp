@@ -3,6 +3,8 @@
 #include <WS2tcpip.h>
 #include <string>
 #include <tchar.h>
+#include <sstream>
+#include "../lib/picojson-master/picojson.h"
 
 #pragma comment(lib,"ws2_32.lib")
 #pragma warning(disable : 4996)
@@ -12,6 +14,7 @@
 #define BUFFER_SIZE 1024
 
 int main() {
+
     WSADATA wsaData;
     SOCKET clientSocket;
     //server用アドレス(受信用)
@@ -20,7 +23,7 @@ int main() {
     struct sockaddr_in clietAddr;
     //socket関係の結果を入れるよう
     int result = 0;
-    std::string sendMessage;
+    picojson::value v;
     try
     {
         result = WSAStartup(MAKEWORD(2, 2), &wsaData);
@@ -56,16 +59,24 @@ int main() {
 
         //更新処理
         while (1) {
-            printf("メッセージを入力してください (終了するには\"exit\"と入力): ");
-            std::cin >> sendMessage;
+            //データ入力
+            printf("名前とメッセージを入力してください (終了するには\"exit\"と入力): ");
+            std::string name,message;
+            std::cin >> name>>message;
+
+            //json形式に変換
+            //std::string err = picojson::parse(v, "{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}");
+            std::ostringstream oss;
+            oss << "{\"name\":\"" << name << "\",\"message\":\"" << message << "\"}";
+            std::string sendData = oss.str();
 
             // メッセージの送信
-            result = sendto(clientSocket, sendMessage.c_str(), sendMessage.size(), 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+            result = sendto(clientSocket, sendData.c_str(), sendData.size(), 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
             if (result == SOCKET_ERROR) {
                 std::cout << WSAGetLastError()<<std::endl;
             }
             // "exit"が入力されたら終了
-            if (strcmp(sendMessage.c_str(), "exit") == 0)
+            if (strcmp(message.c_str(), "exit") == 0)
                 break;
 
             char recvMessage[BUFFER_SIZE];
@@ -74,7 +85,17 @@ int main() {
             if (result == INVALID_SOCKET) {
                 std::cout << "recvfrom error: " << WSAGetLastError() << std::endl;
             }
-            std::cout <<"server: "<<recvMessage << std::endl;
+            //std::cout <<"server: "<<recvMessage << std::endl;
+            //文字列からjson形式に変換
+            std::string a = recvMessage;
+            std::string err = picojson::parse(v, a);
+            if (!err.empty()) {
+                std::cerr << err << std::endl;
+            }
+            std::cout << "server message:" << std::endl;
+            std::cout << "name:" << v.get("name").get<std::string>() << std::endl;
+            std::cout << "message:" << v.get("message").get<std::string>() << std::endl << std::endl;
+            
         }
 
     }
