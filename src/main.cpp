@@ -56,18 +56,42 @@ int main() {
             throw "bind error: ";
         }
         
+        //{//マルチキャスト処理
+        //    struct ip_mreq mreq;
+        //    // setsockoptは、bind以降で行う必要あり
+        //    memset(&mreq, 0, sizeof(mreq));
+        //    mreq.imr_interface.S_un.S_addr = INADDR_ANY;
+        //    mreq.imr_multiaddr.S_un.S_addr = inet_addr("239.192.1.2");
+
+        //    if (setsockopt(clientSocket,
+        //        IPPROTO_IP,
+        //        IP_ADD_MEMBERSHIP,
+        //        (char*)&mreq, sizeof(mreq)) != 0) {
+        //        printf("setsockopt : %d\n", WSAGetLastError());
+        //        return 1;
+        //    }
+        //}
 
         //更新処理
         while (1) {
             //データ入力
-            printf("名前とメッセージを入力してください (終了するには\"exit\"と入力): ");
-            std::string name,message;
-            std::cin >> name>>message;
-
+            std::string id,name,message;
+            std::cout << "id入力: ";
+            std::cin >> id;
+            std::cout << "名前入力: ";
+            std::cin >> name;
+            std::cout << "メッセージ入力(終了するには\"exit\"と入力): ";
+            std::cin>>message;
             //json形式に変換
             //std::string err = picojson::parse(v, "{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}");
             std::ostringstream oss;
-            oss << "{\"name\":\"" << name << "\",\"message\":\"" << message << "\"}";
+            oss << "{\"id\":\"" 
+                << id 
+                << "\",\"name\":\""
+                << name
+                << "\",\"message\":\""
+                << message 
+                << "\"}";
             std::string sendData = oss.str();
 
             // メッセージの送信
@@ -75,10 +99,12 @@ int main() {
             if (result == SOCKET_ERROR) {
                 std::cout << WSAGetLastError()<<std::endl;
             }
+
             // "exit"が入力されたら終了
             if (strcmp(message.c_str(), "exit") == 0)
                 break;
 
+            /*
             char recvMessage[BUFFER_SIZE];
             int recvlen = sizeof(serverAddr);
             result = recvfrom(clientSocket, recvMessage, BUFFER_SIZE, 0, (sockaddr*)&serverAddr, &recvlen);
@@ -95,7 +121,7 @@ int main() {
             std::cout << "server message:" << std::endl;
             std::cout << "name:" << v.get("name").get<std::string>() << std::endl;
             std::cout << "message:" << v.get("message").get<std::string>() << std::endl << std::endl;
-            
+            */
         }
 
     }
