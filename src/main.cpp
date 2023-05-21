@@ -4,7 +4,11 @@
 #include <string>
 #include <tchar.h>
 #include <sstream>
-#include "../lib/picojson-master/picojson.h"
+//#include "../lib/picojson-master/picojson.h"
+#include <picojson-master/picojson.h>
+
+#include <grpcpp/grpcpp.h>
+#include <grpcpp/impl/codegen/status_code_enum.h>
 
 #pragma comment(lib,"ws2_32.lib")
 #pragma warning(disable : 4996)
@@ -55,22 +59,6 @@ int main() {
             //std::cout << "bind error: " << WSAGetLastError() << std::endl;
             throw "bind error: ";
         }
-        
-        //{//マルチキャスト処理
-        //    struct ip_mreq mreq;
-        //    // setsockoptは、bind以降で行う必要あり
-        //    memset(&mreq, 0, sizeof(mreq));
-        //    mreq.imr_interface.S_un.S_addr = INADDR_ANY;
-        //    mreq.imr_multiaddr.S_un.S_addr = inet_addr("239.192.1.2");
-
-        //    if (setsockopt(clientSocket,
-        //        IPPROTO_IP,
-        //        IP_ADD_MEMBERSHIP,
-        //        (char*)&mreq, sizeof(mreq)) != 0) {
-        //        printf("setsockopt : %d\n", WSAGetLastError());
-        //        return 1;
-        //    }
-        //}
 
         //更新処理
         while (1) {
