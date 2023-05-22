@@ -7,8 +7,7 @@
 //#include "../lib/picojson-master/picojson.h"
 #include <picojson-master/picojson.h>
 
-#include <grpcpp/grpcpp.h>
-#include <grpcpp/impl/codegen/status_code_enum.h>
+#include "Login.h"
 
 #pragma comment(lib,"ws2_32.lib")
 #pragma warning(disable : 4996)
@@ -17,6 +16,8 @@
 #define SERVER_PORT 1234
 #define BUFFER_SIZE 1024
 
+
+/*
 int main() {
 
     WSADATA wsaData;
@@ -48,7 +49,7 @@ int main() {
         serverAddr.sin_port = htons(SERVER_PORT);
         // 送信アドレスを設定
         InetPton(serverAddr.sin_family, TEXT(SERVER_IP), &serverAddr.sin_addr.S_un.S_addr);
-        
+
         //clientの情報を設定
         clietAddr.sin_family = AF_INET;
         clietAddr.sin_port = 0;
@@ -73,12 +74,12 @@ int main() {
             //json形式に変換
             //std::string err = picojson::parse(v, "{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}");
             std::ostringstream oss;
-            oss << "{\"id\":\"" 
-                << id 
+            oss << "{\"id\":\""
+                << id
                 << "\",\"name\":\""
                 << name
                 << "\",\"message\":\""
-                << message 
+                << message
                 << "\"}";
             std::string sendData = oss.str();
 
@@ -92,24 +93,24 @@ int main() {
             if (strcmp(message.c_str(), "exit") == 0)
                 break;
 
-            /*
-            char recvMessage[BUFFER_SIZE];
-            int recvlen = sizeof(serverAddr);
-            result = recvfrom(clientSocket, recvMessage, BUFFER_SIZE, 0, (sockaddr*)&serverAddr, &recvlen);
-            if (result == INVALID_SOCKET) {
-                std::cout << "recvfrom error: " << WSAGetLastError() << std::endl;
-            }
-            //std::cout <<"server: "<<recvMessage << std::endl;
-            //文字列からjson形式に変換
-            std::string a = recvMessage;
-            std::string err = picojson::parse(v, a);
-            if (!err.empty()) {
-                std::cerr << err << std::endl;
-            }
-            std::cout << "server message:" << std::endl;
-            std::cout << "name:" << v.get("name").get<std::string>() << std::endl;
-            std::cout << "message:" << v.get("message").get<std::string>() << std::endl << std::endl;
-            */
+            //
+            //char recvMessage[BUFFER_SIZE];
+            //int recvlen = sizeof(serverAddr);
+            //result = recvfrom(clientSocket, recvMessage, BUFFER_SIZE, 0, (sockaddr*)&serverAddr, &recvlen);
+            //if (result == INVALID_SOCKET) {
+            //    std::cout << "recvfrom error: " << WSAGetLastError() << std::endl;
+            //}
+            ////std::cout <<"server: "<<recvMessage << std::endl;
+            ////文字列からjson形式に変換
+            //std::string a = recvMessage;
+            //std::string err = picojson::parse(v, a);
+            //if (!err.empty()) {
+            //    std::cerr << err << std::endl;
+            //}
+            //std::cout << "server message:" << std::endl;
+            //std::cout << "name:" << v.get("name").get<std::string>() << std::endl;
+            //std::cout << "message:" << v.get("message").get<std::string>() << std::endl << std::endl;
+            //
         }
 
     }
@@ -127,4 +128,10 @@ int main() {
     }
     WSACleanup();
     return 0;
+}
+
+*/
+
+int main() {
+
 }

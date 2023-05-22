@@ -88,8 +88,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>F:\UDP\UDPclient\lib;F:\UDP\UDPclient\lib\grpc\include;F:\UDP\UDPclient\lib\grpc\third_party\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>F:\UDP\UDPclient\lib;F:\UDP\UDPclient\lib\grpc\include;F:\UDP\UDPclient\lib\grpc\third_party\protobuf\src;F:\UDP\UDPclient\lib\grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,8 +123,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>F:\UDP\UDPclient\lib;F:\UDP\UDPclient\lib\grpc\include;F:\UDP\UDPclient\lib\grpc\third_party\protobuf\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>F:\UDP\UDPclient\lib;F:\UDP\UDPclient\lib\grpc\include;F:\UDP\UDPclient\lib\grpc\third_party\protobuf\src;F:\UDP\UDPclient\lib\grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,10 +153,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Login.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\pb\login.grpc.pb.cc" />
+    <ClCompile Include="src\pb\login.pb.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\picojson-master\picojson.h" />
+    <ClInclude Include="src\Login.h" />
+    <ClInclude Include="src\pb\login.grpc.pb.h" />
+    <ClInclude Include="src\pb\login.pb.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\proto\login.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

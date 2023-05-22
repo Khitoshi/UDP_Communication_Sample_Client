@@ -16,15 +16,47 @@
     <Filter Include="library">
       <UniqueIdentifier>{9820a34d-4bd1-4660-b120-e63e6664b6a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\pb">
+      <UniqueIdentifier>{ebea16af-e8ae-4452-8011-5be09fe4cf26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\pb">
+      <UniqueIdentifier>{0e14ed20-75be-406c-8326-cf108a3d4b7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{91a396ca-1852-4cf7-abdb-bdec074aede2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Login.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pb\login.grpc.pb.cc">
+      <Filter>ソース ファイル\pb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pb\login.pb.cc">
+      <Filter>ソース ファイル\pb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\picojson-master\picojson.h">
       <Filter>library</Filter>
     </ClInclude>
+    <ClInclude Include="src\Login.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pb\login.grpc.pb.h">
+      <Filter>ヘッダー ファイル\pb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pb\login.pb.h">
+      <Filter>ヘッダー ファイル\pb</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\proto\login.proto">
+      <Filter>proto</Filter>
+    </None>
   </ItemGroup>
 </Project>
