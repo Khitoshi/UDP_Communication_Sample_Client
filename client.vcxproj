@@ -89,7 +89,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>F:\UDP\UDPclient\lib;F:\UDP\UDPclient\lib\grpc\include;F:\UDP\UDPclient\lib\grpc\third_party\protobuf\src;F:\UDP\UDPclient\lib\grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\UDP\UDPclient\lib;C:\gRPC\grpc\include;C:\gRPC\grpc\third_party\protobuf\src;C:\gRPC\grpc\third_party\abseil-cpp;C:\gRPC\grpc\include\grpc;C:\gRPC\grpc\include\grpc++;C:\gRPC\grpc\include\grpcpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -97,8 +97,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\UDP\UDPclient\lib\grpc\.build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>address_sorting.lib;gpr.lib;grpc.lib;grpc_authorization_provider.lib;grpc_plugin_support.lib;grpc_unsecure.lib;grpc++.lib;grpc++_alts.lib;grpc++_error_details.lib;grpc++_reflection.lib;grpc++_unsecure.lib;grpcpp_channelz.lib;upb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\gRPC\grpc\.build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>address_sorting.lib;gpr.lib;grpc.lib;grpc_plugin_support.lib;grpc_unsecure.lib;grpc++.lib;grpc++_alts.lib;grpc++_error_details.lib;grpc++_reflection.lib;grpc++_unsecure.lib;grpcpp_channelz.lib;upb.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -124,7 +124,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>F:\UDP\UDPclient\lib;F:\UDP\UDPclient\lib\grpc\include;F:\UDP\UDPclient\lib\grpc\third_party\protobuf\src;F:\UDP\UDPclient\lib\grpc\third_party\abseil-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\UDP\UDPclient\lib;C:\gRPC\grpc\include;C:\gRPC\grpc\third_party\protobuf\src;C:\gRPC\grpc\third_party\abseil-cpp;C:\gRPC\grpc\include\grpc;C:\gRPC\grpc\include\grpc++;C:\gRPC\grpc\include\grpcpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -132,8 +132,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\UDP\UDPclient\lib\grpc\.build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>address_sorting.lib;gpr.lib;grpc.lib;grpc_authorization_provider.lib;grpc_plugin_support.lib;grpc_unsecure.lib;grpc++.lib;grpc++_alts.lib;grpc++_error_details.lib;grpc++_reflection.lib;grpc++_unsecure.lib;grpcpp_channelz.lib;upb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\gRPC\grpc\.build\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>address_sorting.lib;gpr.lib;grpc.lib;grpc_plugin_support.lib;grpc_unsecure.lib;grpc++.lib;grpc++_alts.lib;grpc++_error_details.lib;grpc++_reflection.lib;grpc++_unsecure.lib;grpcpp_channelz.lib;upb.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
