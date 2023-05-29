@@ -7,8 +7,6 @@
 //#include "../lib/picojson-master/picojson.h"
 #include <picojson-master/picojson.h>
 
-#include "Login.h"
-
 #pragma comment(lib,"ws2_32.lib")
 #pragma warning(disable : 4996)
 
@@ -17,7 +15,7 @@
 #define BUFFER_SIZE 1024
 
 
-/*
+
 int main() {
 
     WSADATA wsaData;
@@ -130,8 +128,3 @@ int main() {
     return 0;
 }
 
-*/
-
-int main() {
-
-}
